@@ -20,9 +20,9 @@ WORKDIR /airnotifier
 
 RUN pipenv install --deploy
 
-ADD start.sh /airnotifier/start.sh
-RUN chmod +x /airnotifier/start.sh
+
 
 VOLUME ["/var/log/airnotifier", "/var/airnotifier/pemdir"]
 
 ENTRYPOINT ["/airnotifier/start.sh"]
+

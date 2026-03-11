@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 export LOGDIR=/var/log/airnotifier
@@ -17,15 +17,13 @@ fi
 
 sed -i "s/mongouri = \"mongodb:\/\/localhost:27017\/\"/mongouri = \"mongodb:\/\/${MONGO_SERVER-localhost}:${MONGO_PORT-27017}\"/g" ./config.py
 
-if [ ! -f "$LOGFILE" ]; then
-  touch "$LOGFILE"
-fi
+mkdir -p $LOGDIR
 
-if [ ! -f "$LOGFILE_ERR" ]; then
-  touch "$LOGFILE_ERR"
-fi
+touch "$LOGFILE"
+touch "$LOGFILE_ERR"
 
 echo "Installing AirNotifier ..."
 pipenv run ./install.py
+
 echo "Starting AirNotifier ..."
 pipenv run ./app.py >> "$LOGFILE" 2>> "$LOGFILE_ERR"

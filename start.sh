@@ -23,5 +23,5 @@ touch "$LOGFILE_ERR"
 echo "Installing AirNotifier ..."
 pipenv run ./install.py
 
-echo "Starting AirNotifier ..."
-pipenv run ./app.py
+echo "Starting AirNotifier on port ${PORT:-10000} ..."
+pipenv run ./app.py --port=${PORT:-10000}

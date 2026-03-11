@@ -4,7 +4,7 @@ ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive TERM=linux
 
-EXPOSE 8801
+EXPOSE 10000
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends git ca-certificates
@@ -25,4 +25,5 @@ RUN pipenv install --deploy
 VOLUME ["/var/log/airnotifier", "/var/airnotifier/pemdir"]
 
 ENTRYPOINT ["/airnotifier/start.sh"]
+
 

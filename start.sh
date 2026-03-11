@@ -15,8 +15,6 @@ if [ ! -f "./logging.ini" ]; then
   cp logging.ini-sample logging.ini
 fi
 
-sed -i "s/mongouri = \"mongodb:\/\/localhost:27017\/\"/mongouri = \"mongodb:\/\/${MONGO_SERVER-localhost}:${MONGO_PORT-27017}\"/g" ./config.py
-
 mkdir -p $LOGDIR
 
 touch "$LOGFILE"
@@ -26,4 +24,4 @@ echo "Installing AirNotifier ..."
 pipenv run ./install.py
 
 echo "Starting AirNotifier ..."
-pipenv run ./app.py >> "$LOGFILE" 2>> "$LOGFILE_ERR"
+pipenv run ./app.py
